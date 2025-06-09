@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book a Flight | EuroFlight</title>
+    <link rel="stylesheet" href="css/master.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="bookflight.html">Book Flight</a>
+    </nav>
+
+    <h1>Book Your EuroFlight</h1>
+    <p class="flight-paragraph">
+      Find and book flights to destinations across Europe at competitive prices.
+    </p>
+
+    <form class="flight-search-form">
+      <select id="from" name="from" required>
+    <option value="">Select departure city</option>
+    <!-- Northern Europe (Cooler climates) -->
+    <option value="london">London, UK (Mild, rainy)</option>
+    <option value="oslo">Oslo, Norway (Cold, snowy winters)</option>
+    <option value="stockholm">Stockholm, Sweden (Seasonal, bright summers)</option>
+    <option value="helsinki">Helsinki, Finland (Long winters, white nights)</option>
+    
+    <!-- Western Europe (Temperate) -->
+    <option value="paris">Paris, France (Mild, occasional rain)</option>
+    <option value="brussels">Brussels, Belgium (Maritime climate)</option>
+    <option value="amsterdam">Amsterdam, Netherlands (Windy, changeable)</option>
+    <option value="dublin">Dublin, Ireland (Cool, often cloudy)</option>
+    
+    <!-- Southern Europe (Mediterranean) -->
+    <option value="rome">Rome, Italy (Hot summers, mild winters)</option>
+    <option value="barcelona">Barcelona, Spain (Sunny, warm)</option>
+    <option value="athens">Athens, Greece (Hot & dry summers)</option>
+    <option value="lisbon">Lisbon, Portugal (Sunny, Atlantic breeze)</option>
+    
+    <!-- Central/Eastern Europe -->
+    <option value="berlin">Berlin, Germany (Continental, cold winters)</option>
+    <option value="prague">Prague, Czechia (Seasonal extremes)</option>
+    <option value="budapest">Budapest, Hungary (Hot summers, snowy winters)</option>
+    <option value="warsaw">Warsaw, Poland (Long winters, warm summers)</option>
+</select>
+
+<select id="to" name="to" required>
+    <option value="">Select destination city</option>
+    <!-- Summer destinations (May-Sep) -->
+    <option value="malaga">Málaga, Spain (Sunniest year-round)</option>
+    <option value="nice">Nice, France (Warm Riviera climate)</option>
+    <option value="split">Split, Croatia (Mediterranean summer)</option>
+    
+    <!-- Winter destinations (Dec-Mar) -->
+    <option value="innsbruck">Innsbruck, Austria (Alpine skiing)</option>
+    <option value="grenoble">Grenoble, France (Snowy winters)</option>
+    <option value="reykjavik">Reykjavik, Iceland (Northern Lights)</option>
+    
+    <!-- Year-round cities -->
+    <option value="vienna">Vienna, Austria (Cultural, seasonal)</option>
+    <option value="florence">Florence, Italy (Mild winters, warm summers)</option>
+    <option value="edinburgh">Edinburgh, UK (Festivals, cool summers)</option>
+</select>
+
+      <label for="departure">Departure Date:</label>
+      <input type="date" id="departure" name="departure" required />
+
+      <label for="return">Return Date:</label>
+      <input type="date" id="return" name="return" />
+
+      <label for="passengers">Passengers:</label>
+      <input
+        type="number"
+        id="passengers"
+        name="passengers"
+        min="1"
+        max="10"
+        value="1"
+      />
+
+      <button type="submit">Search Flights</button>
+    </form>
+
+    <div class="flight-options">
+      <h2>Popular Destinations</h2>
+      <ul>
+        <li>Paris - From €99</li>
+        <li>Rome - From €89</li>
+        <li>Barcelona - From €79</li>
+        <li>Amsterdam - From €109</li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Euro Weather - 7-Day Forecast</title>
+    <link rel="stylesheet" href="css/master.css" />
+  </head>
+  <body>
+    <div>
+      <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="bookflight.html">Book Flight</a>
+      </nav>
+    </div>
+    <section class="hero">
+      <h1>Welcome to EuroFlight</h1>
+      <p>Your gateway to amazing destinations across Europe</p>
+      <a href="bookflight.html"><button>Book Your Flight Now</button></a>
+    </section>
+    <div class="container">
+      <h1>Euro Weather</h1>
+      <p>7-day weather forecast using 7timer.info API</p>
+
+      <div class="input-group">
+        <input
+          type="text"
+          id="cityInput"
+          placeholder="Enter a city (e.g., Paris, Berlin)"
+          list="citySuggestions"
+        />
+        <datalist id="citySuggestions"></datalist>
+        <button id="getWeatherBtn">Get Forecast</button>
+      </div>
+
+      <div class="location-info">
+        <span id="coordinatesDisplay"></span>
+        <span id="countryDisplay"></span>
+      </div>
+
+      <div id="weatherContainer">
+        <div id="currentWeather" class="weather-card"></div>
+        <h2>7-Day Forecast</h2>
+        <div id="forecast" class="forecast-container"></div>
+      </div>
+    </div>
+
+    <script src="js/cityData.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
