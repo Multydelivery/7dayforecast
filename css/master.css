@@ -25,13 +25,23 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(255, 255, 255, 0.8);
+    background: linear-gradient(135deg, #767a91ee, #f2f4f500);
     margin: 10px 0;
     padding: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     padding: 10px 50px;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar a {
+    font-size: 1.2rem;
+    text-shadow: #0f0f0e 2px 1px 3px;
+    margin: 0 15px;
+    color: #bfcadd;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
 }
 
 .hero h1 {
@@ -57,7 +67,7 @@ body {
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
-    background: linear-gradient(135deg, #0058ff, #00aaff);
+    background: linear-gradient(135deg, #49669d, #00aaff);
     border: none;
     color: white;
     border: none;
@@ -69,19 +79,11 @@ body {
     text-decoration: none;
 }
 
-.navbar a {
-    color: #0058ff;
-    text-decoration: none;
-    font-weight: bold;
-    margin: 0 15px;
-    transition: color 0.3s;
-}
-
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(243, 240, 240, 0.9);
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
@@ -372,6 +374,7 @@ h3 {
     padding: 12px;
     font-size: 1rem;
     color: white;
+    border-radius: 10px;
     border: none;
     cursor: pointer;
     transition: background 0.3s;
@@ -398,10 +401,10 @@ h3 {
     margin: 0 auto;
     padding: 20px;
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.9);
+    
 }
 .flight-search-form label {
-    color: #2d76d4;
+    color: #f6f8fa;
     text-decoration: none;
     font-weight: bold;
 }
@@ -419,6 +422,7 @@ h3 {
     padding: 12px;
     font-size: 1rem;
     color: white;
+    border-radius: 10px;
     border: none;
     cursor: pointer;
     transition: background 0.3s;
