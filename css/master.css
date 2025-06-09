@@ -320,6 +320,7 @@ h3 {
  .about {
     font-size: 1.2rem;
     color: #efe3e3;
+    text-shadow: #0f0f0e 5px 2px 3px;
     margin: 20px 0;
     line-height: 1.6;
     text-align: justify;
