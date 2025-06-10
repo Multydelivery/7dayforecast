@@ -6,11 +6,15 @@ const elements = {
     countryDisplay: document.getElementById('countryDisplay'),
     currentWeather: document.getElementById('currentWeather'),
     forecast: document.getElementById('forecast'),
-    weatherContainer: document.getElementById('weatherContainer') // Add this line
+    weatherContainer: document.getElementById('weatherContainer')
 };
 
 // Initialize the app
 function init() {
+    if (!elements.cityInput || !elements.getWeatherBtn) {
+        console.error('Essential DOM elements not found.');
+        return;
+    }
     populateCitySuggestions();
     elements.getWeatherBtn.addEventListener('click', handleCitySearch);
     elements.cityInput.addEventListener('keypress', (e) => {
@@ -22,67 +26,60 @@ function init() {
 function handleCitySearch() {
     const cityName = elements.cityInput.value.trim();
     if (!cityName) return;
-    
+
     const city = findCityData(cityName);
     if (city) {
         displayCityInfo(city);
         fetchWeatherData(city.lon, city.lat);
-        elements.cityInput.value = ''; // Clear the input field
-        elements.cityInput.focus(); // Return focus to the input for new search
+        elements.cityInput.value = '';
+        elements.cityInput.focus();
     } else {
         showError('City not found in our database. Please try another European city.');
     }
 }
 
-// Find city in our dataset
+// Find city in dataset
 function findCityData(cityName) {
     const input = cityName.toLowerCase();
-    return cityData.find(city => 
-        city.city.toLowerCase().includes(input) || 
+    return cityData.find(city =>
+        city.city.toLowerCase().includes(input) ||
         `${city.city}, ${city.country}`.toLowerCase().includes(input)
     );
 }
 
-// Display city information
+// Display city info
 function displayCityInfo(city) {
     elements.coordinatesDisplay.textContent = `Lat: ${city.lat.toFixed(3)}, Lon: ${city.lon.toFixed(3)}`;
     elements.countryDisplay.textContent = `${city.city}, ${city.country}`;
 }
 
+// Fetch weather data from API (HTTPS)
 async function fetchWeatherData(lon, lat) {
     showLoading();
-    
     try {
         const response = await fetch(
             `https://www.7timer.info/bin/api.pl?lon=${lon}&lat=${lat}&product=civil&output=json`
         );
-        
-        if (!response.ok) throw new Error('Failed to fetch weather data');
-        
+        if (!response.ok) throw new Error('Failed to fetch weather data.');
         const data = await response.json();
-        console.log(data);
         displayWeatherData(data);
     } catch (error) {
-        showError(error.message);
+        showError('Unable to load weather data. Please try again later.');
         console.error('Error fetching weather:', error);
     }
 }
+
 // Display weather data
 function displayWeatherData(data) {
-    // Clear previous content
     elements.currentWeather.innerHTML = '';
     elements.forecast.innerHTML = '';
-    
-    // Check if we have valid data
+
     if (data.dataseries && data.dataseries.length > 0) {
         const current = data.dataseries[0];
         const date = new Date();
-        
-        // Get weather information - the property might be 'weather' or 'prec_type'
         const weatherCode = current.weather || current.prec_type || 'clearday';
         const weatherDesc = getWeatherDescription(weatherCode);
-        
-        // Display current weather
+
         elements.currentWeather.innerHTML = `
             <div class="current-temp">${current.temp2m}°C</div>
             <div class="weather-details">
@@ -94,13 +91,12 @@ function displayWeatherData(data) {
                 <div class="weather-icon">${getWeatherIcon(weatherCode)}</div>
             </div>
         `;
-        
-        
+
         data.dataseries.slice(0, 7).forEach((day, index) => {
             const forecastDate = new Date();
             forecastDate.setDate(forecastDate.getDate() + index);
             const dayWeatherCode = day.weather || day.prec_type || 'clearday';
-            
+
             elements.forecast.innerHTML += `
                 <div class="forecast-day">
                     <h3>${forecastDate.toLocaleDateString('en-US', { weekday: 'short' })}</h3>
@@ -112,16 +108,16 @@ function displayWeatherData(data) {
             `;
         });
     } else {
-        showError('No weather data available');
+        showError('No weather data available.');
     }
 }
 
-// Add to displayWeatherData() function
+// (Optional) Display hourly forecast
 function displayHourlyForecast(hourlyData) {
     const hourlyContainer = document.createElement('div');
     hourlyContainer.className = 'hourly-forecast';
     hourlyContainer.innerHTML = '<h3>Hourly Forecast</h3><div class="hourly-scroll"></div>';
-    
+
     hourlyData.slice(0, 24).forEach(hour => {
         hourlyContainer.querySelector('.hourly-scroll').innerHTML += `
             <div class="hour">
@@ -135,7 +131,7 @@ function displayHourlyForecast(hourlyData) {
     elements.weatherContainer.insertBefore(hourlyContainer, elements.forecast);
 }
 
-// Helper function to get weather description
+// Weather description helper
 function getWeatherDescription(weatherCode) {
     const weatherMap = {
         'clearday': 'Clear sky',
@@ -166,7 +162,7 @@ function getWeatherDescription(weatherCode) {
     return weatherMap[weatherCode] || weatherCode;
 }
 
-// Helper function to get weather icon
+// Weather icon helper
 function getWeatherIcon(weatherCode) {
     const iconMap = {
         'clearday': '☀️',
