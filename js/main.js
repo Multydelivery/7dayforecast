@@ -49,19 +49,15 @@ function displayCityInfo(city) {
     elements.countryDisplay.textContent = `${city.city}, ${city.country}`;
 }
 
-// Fetch weather data from API
 async function fetchWeatherData(lon, lat) {
     showLoading();
     
     try {
-        // Try using 'civil' instead of 'astro'
-const response = await fetch(
-    `http://www.7timer.info/bin/api.pl?lon=${lon}&lat=${lat}&product=civil&output=json`
-);
+        const response = await fetch(
+            `https://www.7timer.info/bin/api.pl?lon=${lon}&lat=${lat}&product=civil&output=json`
+        );
         
-        if (!response.ok) {
-            throw new Error('Failed to fetch weather data');
-        }
+        if (!response.ok) throw new Error('Failed to fetch weather data');
         
         const data = await response.json();
         console.log(data);
